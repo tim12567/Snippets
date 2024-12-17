@@ -22,10 +22,11 @@ def snippets_page(request):
 
 
 def snippet(request, value):
+    chislo = Snippet.objects.count()
     try:
         snp = Snippet.objects.get(id=value)
     except ObjectDoesNotExist: return HttpResponse(f'<ul><h4>сниппета под номером {value} не существует</h4></ul>')
     else:
-        val = {'snip': snp}
+        val = {'snip': snp, 'chislo': chislo}
         return render(request, 'pages/snippet.html', val)
 
