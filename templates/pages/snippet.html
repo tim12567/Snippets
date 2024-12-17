@@ -19,7 +19,7 @@
             Название: <input type="text" value="{{snip.name}}" class="form-control">
         </div>
         <div class="col col-4">
-            Дата создания:<input type="text" value="{{snip.creation_date}}" class="form-control">
+            Дата создания:<input type="text" value="{{snip.creation_date | date:"Y-m-d"}}" class="form-control">
         </div>
     </div>
     <hr>
