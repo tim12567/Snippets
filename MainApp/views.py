@@ -1,8 +1,8 @@
-from django.http import Http404, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Snippet
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import SnippetForm
+from MainApp.forms import SnippetForm
 
 
 def index_page(request):
@@ -32,8 +32,10 @@ def snippet(request, value):
     
 
 def create_snippet(request):
-    from pprint import pprint
     if request.method == "POST":
-        pprint(request.POST)
-        return HttpResponse('DONE')
+        form = SnippetForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('sp_list')
+        return render(request, 'pages/add_snippet.html', {'form': form})
 

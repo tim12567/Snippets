@@ -59,7 +59,7 @@
                         {% for i in snps %}
                     <tr>
                         <td scope="row">{{i.id}}</td>
-                        <td><a href="{% url "sp_val" i.id %}">{{i.name}}</a></td>
+                        <td><a href="{% url 'sp_val' i.id %}">{{i.name}}</a></td>
                         <td>{{i.creation_date | date:"Y-m-d H:i:s"}}</td>
                     </tr>
                         {% endfor %}
