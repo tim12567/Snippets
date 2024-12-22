@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .models import Snippet
 from django.core.exceptions import ObjectDoesNotExist
 from MainApp.forms import SnippetForm
+from django.contrib import auth
 
 
 def index_page(request):
@@ -66,5 +67,27 @@ def snippet_edit(request, value):
         sn_add.creation_date = data_form['creation_date']
         sn_add.save()
         return redirect('sp_list')
+    
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        # print("username =", username)
+        # print("password =", password)
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+        else:
+            # Return error message
+            pass
+    return redirect('home')
+
+# def login_url(request):
+#     return render(request, 'pages/only_login.html', {'pagename': 'only login'})
+
+def logout(request):
+    auth.logout(request)
+    return redirect('home')
 
     

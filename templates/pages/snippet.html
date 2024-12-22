@@ -15,10 +15,10 @@
 </div>
 {% if type == 'view' %}
     <div class="row">
-        <div class="col col-6">
+        <div class="col-6">
             Название: <input type="text" value="{{snip.name}}" class="form-control">
         </div>
-        <div class="col col-4">
+        <div class="col-4">
             Дата создания:<input type="text" value="{{snip.creation_date | date:"Y-m-d"}}" class="form-control">
         </div>
     </div><hr>
@@ -34,24 +34,24 @@
     {% else %}
     <form action="" method='post'>
         {% csrf_token %}
-    <div class="row">
-        <div class="col col-6">
-            Название: <input type="text" name='name' value="{{snip.name}}" class="form-control">
+    <div class="row mx-5">
+        <div class="col-3">
+            Название: <input type="text" placeholder="введите" value="{{snip.name}}" class="form-control">
         </div>
-        <div class="col col-4">
-            Дата создания:<input type="text" name='creation_date' value="{{snip.creation_date | date:"Y-m-d"}}" class="form-control">
+        <div class="col-4">
+            Дата создания:<input type="text" placeholder="введите" name='creation_date' value="{{snip.creation_date | date:"Y-m-d"}}" class="form-control">
         </div>
     </div><hr>
     <div class="row">
         <div class="col">
-            <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+            <div class="p-2 h-100 mx-5" style="border:1px solid #ced4da; border-radius:5px;">Строка
                 <textarea name='code'>
                     {{snip.code}}
                 </textarea>
             </div>
         </div>
     </div>
-    <button type='submit' class='btn btn-primary btn-block'>Обновить</button>
+    <button type='submit' class='btn btn-primary btn-block col-6 mx-5'>Обновить</button>
     </form>
     {% endif %}
  {% endblock %}
