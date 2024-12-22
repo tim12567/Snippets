@@ -12,12 +12,15 @@
 
         <div class="row">
             <div class="col">
-                <form action="{% url "create_snippet_st" %}" method="post">
+                <form action="" method="post">
                     {% csrf_token %}
-                   <table>
-                    {{ form }}
-                   </table>
-                   <input type="submit" value="Отправить"/>
+                    {{ form.as_p }}
+                    <div class='form_group_row'>
+                        <div class='col-6'> 
+                            <input type="submit" class="btn btn-primary btn-block" value="Отправить"/>
+                        </div>
+                    </div>
+                   
                 </form>
                 
             </div>
