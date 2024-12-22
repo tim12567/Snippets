@@ -51,7 +51,7 @@
                         <td>
                             <form action='{% url "sp_edit" i.id %}' method='post'>
                                 {% csrf_token %}
-                            <input type="submit" class="btn btn-primary btn-block" value="Изменить"/>
+                            <button type="submit" class="btn btn-primary btn-block">Изменить</button>
                             </form>
                         </td>
                     </tr>
