@@ -36,10 +36,10 @@
         {% csrf_token %}
     <div class="row mx-5">
         <div class="col-3">
-            Название: <input type="text" placeholder="введите" value="{{snip.name}}" class="form-control">
+            Название: <input type="text" name='name' placeholder="введите" value="{{snip.name}}" class="form-control">
         </div>
         <div class="col-4">
-            Дата создания:<input type="text" placeholder="введите" name='creation_date' value="{{snip.creation_date | date:"Y-m-d"}}" class="form-control">
+            Дата создания:<input name='creation_date' value="{{snip.creation_date | date:"Y-m-d"}}" class="form-control">
         </div>
     </div><hr>
     <div class="row">

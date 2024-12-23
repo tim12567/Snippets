@@ -6,6 +6,7 @@ from MainApp.forms import SnippetForm
 from django.contrib import auth
 
 
+
 def index_page(request):
     context = {'pagename': 'PythonBin'}
     return render(request, 'pages/index.html', context)
@@ -53,11 +54,11 @@ def snippet_edit(request, value):
     try:
         sn_add = Snippet.objects.get(id=value)
     except ObjectDoesNotExist: return Http404
-
+    
     # хотим получить страницу с данными сниппета
     if request.method == "GET":
         context = {'snippet': sn_add, 'type': 'edit'}
-        return render(request, 'pages/snippet.html')
+        return render(request, 'pages/snippet.html', context)
     
     # Получаем данные из формы и на их основе создаем новый сниппет в БД 
     if request.method == "POST":
@@ -83,8 +84,6 @@ def login(request):
             pass
     return redirect('home')
 
-# def login_url(request):
-#     return render(request, 'pages/only_login.html', {'pagename': 'only login'})
 
 def logout(request):
     auth.logout(request)
