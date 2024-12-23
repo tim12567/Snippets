@@ -25,6 +25,13 @@
                         </a>
                     </li>
                     {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li class="form-inline">
+                        <a class="btn btn-outline-info" href="{% url 'sp_my' %}">
+                            Мои сниппеты
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
             {% if request.user.is_authenticated %}
@@ -47,17 +54,10 @@
                 </div>
             </div>
             {% if errors %}
-            <ul>
-                {% for error in errors %}
-                <li style='color: red;'>{{error}}</li>
-                {% endfor %}
+            <ul style='color: white;'>
+                {{errors.0}}
             </ul>
             {% endif %}
-            {% comment %} <form method="post" action="{% url "login" %}">{% csrf_token %}
-                <input name="username"  type="text" placeholder="username">
-                <input name="password"  type="password" placeholder="password">
-                <button type="submit">login</button>
-            </form> {% endcomment %}
             {% endif %}
         </div>
     </nav>

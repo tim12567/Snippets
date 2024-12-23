@@ -13,6 +13,13 @@ def index_page(request):
     return render(request, 'pages/index.html', context)
 
 
+@login_required
+def snippets_my(request):
+    snippets = Snippet.objects.filter(user=request.user)
+    context = {'pagename': 'Мои сниппеты', 'snps': snippets}
+    return render(request, 'pages/view_snippets.html', context)
+
+
 @login_required(login_url='home')
 def add_snippet_page(request):
     # создаем пустую форму при запросе GET
@@ -27,7 +34,7 @@ def add_snippet_page(request):
         if form.is_valid():
             # создает но не сохраняет
             snippet = form.save(commit=False)
-            # если пользователь залогинен, тогда этот снипет мы сохраняем с таким пользователем
+            # если пользователь залогинен, тогда мы сохраняем сниппет с таким пользователем
             if request.user.is_authenticated:
                 snippet.user = request.user
                 snippet.save()
@@ -89,7 +96,7 @@ def login(request):
         else:
             context = {
                 'pagename': 'PythonBin',
-                'errors': ['wrong username or password'],
+                'errors': ['некорректно введен пароль либо имя пользователя'],
             }
             return render(request, 'pages/index.html', context)
     return redirect('home')
