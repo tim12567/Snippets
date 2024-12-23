@@ -30,6 +30,7 @@
                         <th scope="col">Удаление</th>
                         <th scope="col">Редактирование</th>
                         <th scope="col">Пользователь</th>
+                        <th scope="col">Тип сниппета</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -37,9 +38,11 @@
                     <tr>
                         <td scope="row">{{forloop.counter}}</td>
                         <td><a href="{% url 'sp_val' i.id %}">{{i.name}}</a>
+                            {% if request.user == i.user %}
                         <a href="{% url 'sp_del' i.id %}"><i class="fa-solid fa-trash" style="color: #102851;"></i></a>
                         <a href="{% url 'sp_edit' i.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
-                    </td>
+                            {% endif %}
+                        </td>
                         <td>{{i.creation_date | date:"Y-m-d H:i:s"}}</td>
                         <td>
                             <form action='{% url "sp_del" i.id %}' method='post'>
@@ -47,11 +50,14 @@
                                 <button type='submit' class='btn btn-danger'>Delete</button>
                             </form>
                         </td>
-                        <td>
+                        <td>{% if request.user == i.user %}
                             <a href="{% url 'sp_edit' i.id %}">
                                 <button type="submit" class="btn btn-primary btn-block">Изменить</button></a>
-                        </td>
+                        </td>{% endif %}
                         <td class="text-center">{{ i.user.username }}</td>
+                        <td>
+                            {% if i.public %}Публичный{% else %}Приватный{% endif %}
+                        </td>
                     </tr>
                         {% endfor %}
                     </tbody>

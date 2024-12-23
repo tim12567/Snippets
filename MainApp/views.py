@@ -43,7 +43,7 @@ def add_snippet_page(request):
 
 
 def snippets_page(request):
-    snp = Snippet.objects.all()
+    snp = Snippet.objects.filter(public=True)
     context = {'pagename': 'Просмотр сниппетов', 'snps': snp}
     return render(request, 'pages/view_snippets.html', context)
 
@@ -57,6 +57,7 @@ def snippet(request, value):
         return render(request, 'pages/snippet.html', val)
     
 
+@login_required
 def snippet_delete(request, value):
     if request.method == 'POST' or request.method == 'GET':
         snip = get_object_or_404(Snippet, id = value)
@@ -64,6 +65,7 @@ def snippet_delete(request, value):
     return redirect('sp_list')
 
 
+@login_required
 def snippet_edit(request, value):
     try:
         sn_add = Snippet.objects.get(id=value)
@@ -77,8 +79,11 @@ def snippet_edit(request, value):
     # Получаем данные из формы и на их основе создаем новый сниппет в БД 
     if request.method == "POST":
         data_form = request.POST
+        print(f'{data_form = }')
         sn_add.name = data_form['name'] 
         sn_add.code = data_form['code']
+        # если ключ public есть в словаре то берем значение если нету то присваиваем False
+        sn_add.public = data_form.get('public', False)
         sn_add.creation_date = data_form['creation_date']
         sn_add.save()
         return redirect('sp_list')
