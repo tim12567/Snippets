@@ -4,6 +4,7 @@ from .models import Snippet
 from django.core.exceptions import ObjectDoesNotExist
 from MainApp.forms import SnippetForm
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -12,6 +13,7 @@ def index_page(request):
     return render(request, 'pages/index.html', context)
 
 
+@login_required(login_url='home')
 def add_snippet_page(request):
     # создаем пустую форму при запросе GET
     if request.method == "GET":
@@ -23,7 +25,12 @@ def add_snippet_page(request):
     if request.method == "POST":
         form = SnippetForm(request.POST)
         if form.is_valid():
-            form.save()
+            # создает но не сохраняет
+            snippet = form.save(commit=False)
+            # если пользователь залогинен, тогда этот снипет мы сохраняем с таким пользователем
+            if request.user.is_authenticated:
+                snippet.user = request.user
+                snippet.save()
             return redirect('sp_list')
         return render(request, 'pages/add_snippet.html', {'form': form})
 
@@ -80,8 +87,11 @@ def login(request):
         if user is not None:
             auth.login(request, user)
         else:
-            # Return error message
-            pass
+            context = {
+                'pagename': 'PythonBin',
+                'errors': ['wrong username or password'],
+            }
+            return render(request, 'pages/index.html', context)
     return redirect('home')
 
 

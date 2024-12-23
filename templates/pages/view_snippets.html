@@ -29,7 +29,7 @@
                         <th scope="col">Дата создания</th>
                         <th scope="col">Удаление</th>
                         <th scope="col">Редактирование</th>
-                     
+                        <th scope="col">Пользователь</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,7 +51,7 @@
                             <a href="{% url 'sp_edit' i.id %}">
                                 <button type="submit" class="btn btn-primary btn-block">Изменить</button></a>
                         </td>
-                        
+                        <td class="text-center">{{ i.user.username }}</td>
                     </tr>
                         {% endfor %}
                     </tbody>
