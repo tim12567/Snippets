@@ -1,6 +1,6 @@
 {% load static %}
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: Teal;">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #154c68;">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="{% static 'images/logo.png' %}" width="32" height="32" alt="">
@@ -14,20 +14,20 @@
                 <ul class="navbar-nav mr-auto">
                     {% if request.user.is_authenticated %}
                     <li class="form-inline">
-                        <a class="btn btn-outline-secondary" href="{% url 'sp_add' %}">
+                        <a class="btn btn-outline-light btn-secondary" href="{% url 'sp_add' %}">
                             Добавить сниппет
                         </a>
                     </li>
                     
                     <li class="form-inline">
-                        <a class="btn btn-outline-info" href="{% url 'sp_list' %}">
+                        <a class="btn btn-info btn-outline-light" href="{% url 'sp_list' %}">
                             Посмотреть сниппеты
                         </a>
                     </li>
                     {% endif %}
                     {% if request.user.is_authenticated %}
                     <li class="form-inline">
-                        <a class="btn btn-outline-info" href="{% url 'sp_my' %}">
+                        <a class="btn btn-info btn-outline-light" href="{% url 'sp_my' %}">
                             Мои сниппеты
                         </a>
                     </li>
@@ -35,7 +35,7 @@
                 </ul>
             </div>
             {% if request.user.is_authenticated %}
-            <span style='color: white;'>Welcome, {{ request.user.username }}</span> &nbsp;&nbsp;<a href="{% url "logout" %}">logout</a>
+            <span style='color: white;'>Welcome, {{ request.user.username }}</span> &nbsp;&nbsp;<b><a style='color: #6ce1e9;' href="{% url "logout" %}">Выйти</a></b>
             {% else %}
             <div class="navbar-dark bg-light navbar-nav mr-right nav-item dropdown dropdown-menu-right">
                 <a class="btn btn-outline-primary my-2 my-sm-0 dropdown-toggle" href="#" id="navbarDropdown"

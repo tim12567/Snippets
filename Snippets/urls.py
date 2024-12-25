@@ -5,7 +5,7 @@ from MainApp import views
 
 urlpatterns = [
     path('', views.index_page, name='home'),
-    # path('snippets/add', views.add_snippet_page, name='sp_add'),
+    path('snippets/add', views.add_snippet_page, name='sp_add'),
     path('snippets/list', views.snippets_page, name='sp_list'),
     path('snippets/my', views.snippets_my, name='sp_my'),
     path('snippet/<int:value>', views.snippet, name='sp_val'),

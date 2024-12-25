@@ -20,7 +20,6 @@ def snippets_my(request):
     return render(request, 'pages/view_snippets.html', context)
 
 
-
 def create_user(request):
     context = {'pagename': 'Регистрация нового пользователя'}
     # создаем пустую форму при запросе GET
@@ -110,23 +109,23 @@ def logout(request):
 
     
 
-# @login_required(login_url='home')
-# def add_snippet_page(request):
-#     # создаем пустую форму при запросе GET
-#     if request.method == "GET":
-#         form = SnippetForm()
-#         context = {'pagename': 'Добавление нового сниппета', 'form': form}
-#         return render(request, 'pages/add_snippet.html', context)
+@login_required(login_url='home')
+def add_snippet_page(request):
+    # создаем пустую форму при запросе GET
+    if request.method == "GET":
+        form = SnippetForm()
+        context = {'pagename': 'Добавление нового сниппета', 'form': form}
+        return render(request, 'pages/add_snippet.html', context)
     
-#     # Получаем данные из формы и на их основе создаем новый сниппет в БД 
-#     if request.method == "POST":
-#         form = SnippetForm(request.POST)
-#         if form.is_valid():
-#             # создает но не сохраняет
-#             snippet = form.save(commit=False)
-#             # если пользователь залогинен, тогда мы сохраняем сниппет с таким пользователем
-#             if request.user.is_authenticated:
-#                 snippet.user = request.user
-#                 snippet.save()
-#             return redirect('sp_list')
-#         return render(request, 'pages/add_snippet.html', {'form': form})
+    # Получаем данные из формы и на их основе создаем новый сниппет в БД 
+    if request.method == "POST":
+        form = SnippetForm(request.POST)
+        if form.is_valid():
+            # создает но не сохраняет
+            snippet = form.save(commit=False)
+            # если пользователь залогинен, тогда мы сохраняем сниппет с таким пользователем
+            if request.user.is_authenticated:
+                snippet.user = request.user
+                snippet.save()
+            return redirect('sp_list')
+        return render(request, 'pages/add_snippet.html', {'form': form})
