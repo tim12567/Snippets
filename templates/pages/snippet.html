@@ -31,6 +31,30 @@
             </div>
         </div>
     </div>
+    {% comment %} <fieldset></fieldset> {% endcomment %}
+    <br>
+    <div class='col-6 p-3'>
+    <table border=1>
+        <tr>
+            <th>Автор</th>
+            <th>Комментарий</th>
+        </tr>
+        {% for comment in snippet.comments.all %}
+        <tr>
+            <td>{{comment.author.username}}</td>
+            <td>{{comment.text}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% if request.user.is_authenticated %}
+    <form action="{% url "comments_add" %}" method='POST'>
+        {% csrf_token %}
+        {{ comments_form }}
+        <input name='snippet_id' type="hidden" value={{ snippet.id }}><br>
+        <button style='background-color: #2F4F4F;' type='button' >Добавить комментарий</button>
+    </form>
+    </div>
+    {% endif %}
     {% else %}
     <form action="" method='post'>
         {% csrf_token %}

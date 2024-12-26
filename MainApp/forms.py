@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput, Textarea, ValidationError
-from MainApp.models import Snippet
+from MainApp.models import Comment, Snippet
 
 
 class SnippetForm(ModelForm):
@@ -55,4 +55,15 @@ class UserRegistrationForm(ModelForm):
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
-        return user           
+        return user          
+
+
+class CommentForm(ModelForm):
+   class Meta:
+       model = Comment
+       fields = ['text']
+       labels = {'text': ''} 
+       widgets = {
+           'text': Textarea(attrs={'placeholder': 'Комментарий для сниппета'})
+           
+       }
