@@ -45,13 +45,16 @@ def snippets_page(request):
 
 
 def snippet(request, value):
+    context = {'pagename': 'Просмотр сниппета'}
     try:
         snp = Snippet.objects.get(id=value)
     except ObjectDoesNotExist: return HttpResponse(f'<ul><h4>сниппета под номером {value} не существует</h4></ul>')
     else:
         comments_form = CommentForm()
-        val = {'snip': snp, 'type': 'view', 'comments_form': comments_form}
-        return render(request, 'pages/snippet.html', val)
+        context['snip'] = snp
+        context['type'] = 'view'
+        context['comments_form'] = comments_form
+        return render(request, 'pages/snippet.html', context)
     
 
 @login_required
