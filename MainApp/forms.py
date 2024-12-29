@@ -65,5 +65,4 @@ class CommentForm(ModelForm):
        labels = {'text': ''} 
        widgets = {
            'text': Textarea(attrs={'placeholder': 'Комментарий для сниппета'})
-           
        }

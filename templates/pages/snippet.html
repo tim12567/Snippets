@@ -31,7 +31,6 @@
             </div>
         </div>
     </div>
-    {% comment %} <fieldset></fieldset> {% endcomment %}
     <br>
     <div class='col-6 p-3'>
     <table border=1>
@@ -39,7 +38,7 @@
             <th>Автор</th>
             <th>Комментарий</th>
         </tr>
-        {% for comment in snippet.comments.all %}
+        {% for comment in snip.comments.all %}
         <tr>
             <td>{{comment.author.username}}</td>
             <td>{{comment.text}}</td>
@@ -51,8 +50,8 @@
     <form action="{% url "comments_add" %}" method='POST'>
         {% csrf_token %}
         {{ comments_form }}
-        <input name='snippet_id' type="hidden" value={{ snippet.id }}><br>
-        <button style='background-color: #2F4F4F;' type='submit'>Добавить комментарий</button>
+        <input name='snippet_id' type="hidden" value={{ snip.id }}><br>
+        <button style='background-color: #2F4F4F;' type='submit' >Добавить комментарий</button>
     </form>
     </div>
     {% endif %}

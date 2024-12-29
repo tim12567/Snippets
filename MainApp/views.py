@@ -140,10 +140,10 @@ def comments_add(request):
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             snippet_id = request.POST.get('snippet_id')
-            snippet = Snippet.objects.get(id=snippet_id)
-            comment = comment_form.save(commit=False)
+            snippet = Snippet.objects.get(id = snippet_id)
+            comment = comment_form.save(commit = False)
             comment.author = request.user
             comment.snippet = snippet
             comment.save()
-            return redirect('sp_val', snippet_id = snippet.id)
+            return redirect('sp_val', value=snippet.id)
     return HttpResponseNotAllowed(['POST'])
