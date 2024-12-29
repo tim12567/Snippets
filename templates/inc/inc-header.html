@@ -18,13 +18,12 @@
                             Добавить сниппет
                         </a>
                     </li>
-                    
+                    {% endif %}
                     <li class="form-inline">
                         <a class="btn btn-info btn-outline-light" href="{% url 'sp_list' %}">
                             Посмотреть сниппеты
                         </a>
                     </li>
-                    {% endif %}
                     {% if request.user.is_authenticated %}
                     <li class="form-inline">
                         <a class="btn btn-info btn-outline-light" href="{% url 'sp_my' %}">

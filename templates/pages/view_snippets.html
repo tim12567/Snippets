@@ -44,11 +44,11 @@
                             {% endif %}
                         </td>
                         <td>{{i.creation_date | date:"Y-m-d H:i:s"}}</td>
-                        <td>
+                        <td>{% if request.user == i.user %}
                             <form action='{% url "sp_del" i.id %}' method='post'>
                                 {% csrf_token %}
                                 <button type='submit' class='btn btn-danger'>Delete</button>
-                            </form>
+                            </form>{% endif %}
                         </td>
                         <td>{% if request.user == i.user %}
                             <a href="{% url 'sp_edit' i.id %}">
