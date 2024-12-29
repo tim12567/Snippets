@@ -15,7 +15,7 @@
 </div>
 {% if type == 'view' %}
     <div class="row">
-        <div class="col-6">
+        <div class="col-6 mx-4">
             Название: <input type="text" value="{{snip.name}}" class="form-control">
         </div>
         <div class="col-4">
@@ -24,7 +24,7 @@
     </div><hr>
     <div class="row">
         <div class="col">
-            <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+            <div class="mx-4 h-100" style="border:1px solid #ced4da; border-radius:5px;">
                 <p>
                     {{snip.code}}
                 </p>
@@ -33,7 +33,7 @@
     </div>
     <br>
     <div class='col-6 p-3'>
-    <table border=1>
+    <table border=1 class='snip_auth'>
         <tr>
             <th>Автор</th>
             <th>Комментарий</th>
@@ -52,7 +52,7 @@
         {{ comments_form }}
         <input name='snippet_id' type="hidden" value={{ snip.id }}><br>
         {% if request.user == snip.user %}
-        <button style='background-color: #2F4F4F;' type='submit' >Добавить комментарий</button>
+        <button style='background-color: #2F4F4F; color: white;' type='submit' >Добавить комментарий</button>
         {% endif %}
     </form>
     </div>
