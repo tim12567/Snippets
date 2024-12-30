@@ -34,8 +34,15 @@ class UserRegistrationForm(ModelForm):
         model = User
         fields = ["username", "email"]
 
+
     password1 = CharField(label="Создайте пароль", widget=PasswordInput)
     password2 = CharField(label="Введите пароль повторно", widget=PasswordInput)
+
+    
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['username'].widget.attrs['data-custom'] = 'value'
+
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
