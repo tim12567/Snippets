@@ -14,17 +14,18 @@
             <div class="col">
                 <form action="{% url "register" %}" method="post">
                     {% csrf_token %}
-                    {% comment %} {{form.as_p}} {% endcomment %}
-                    
-                    <div class="form-group">
-                    {% render_field form.username class="form-control" placeholder="Придумайте имя пользователя" type="text" %}</div>
-                    <div class="form-group">
-                        {% render_field form.email class="form-control" placeholder="Напишите свой email" type="text" %}</div>
-                    <div class="form-group">
-                        {% render_field form.password1 class="form-control" placeholder="Придумайте пароль" type="text" %}</div>
-                    <div class="form-group">
-                        {% render_field form.password2 class="form-control" placeholder="Повторите пароль" type="text" %}</div>
-                    <input type="submit" value="Создать пользователя">
+                    {% comment %} {{form.as_p}} {% endcomment %}                         
+                        
+                    <div class="form-group col-6">Придумайте имя пользователя:
+                    {% render_field form.username class="form-control" placeholder="Имя" type="text" %}</div>
+                    <div class="form-group col-6">Напишите свой email:
+                        {% render_field form.email class="form-control" placeholder="email" type="text" %}</div>
+                    <div class="form-group col-6">Придумайте пароль:
+                        {% render_field form.password1 class="form-control" placeholder="пароль" type="text" %}</div>
+                    <div class="form-group col-6">Повторите пароль:
+                        {% render_field form.password2 class="form-control" placeholder="еще раз пароль" type="text" %}</div>
+                    <div class="m-4">
+                    <input class="border border-2 border-primary bg-info d-block p-2 text-bg-primary rounded-pill text-white" type="submit" value="Создать пользователя"></div>
                 </form>
             </div>
         </div>
